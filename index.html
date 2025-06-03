@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio Henrique</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+:root {
+    --primary: #ff6b00;
+    --primary-dark: #e05a00;
+    --primary-light: rgba(255, 107, 0, 0.1);
+    --dark: #121212;
+    --darker: #0a0a0a;
+    --light: #f5f5f5;
+    --gray: #1e1e1e;
+    --glass: rgba(30, 30, 30, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+sa    100% { transform: scale(1); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        body {
+            background: linear-gradient(-45deg, #0a0a0a, #121212, #1a1a1a, #222222);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .blur-circle {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary), transparent 70%);
+            filter: blur(60px);
+            opacity: 0.15;
+            z-index: -1;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .circle-1 {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .circle-2 {
+            bottom: 15%;
+            right: 10%;
+            animation-delay: 2s;
+            animation-duration: 10s;
+        }
+        
+        /* Navegação */
+        nav {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 107, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), #ff9a00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: #ccc;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: white;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a.active {
+            color: var(--primary);
+        }
+        
+        /* Conteúdo principal */
+        .main-content {
+            display: none;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .main-content.active {
+            display: block;
+        }
+        
+        /* Página Inicial */
+        .hero {
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary), #ff9a00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 800;
+            text-shadow: 0 0 20px rgba(255, 107, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: #ccc;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+        
+        /* Página de Projetos */
+        .projects-page {
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+        
+        .project-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 107, 0, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), #ff9a00);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 107, 0, 0.2);
+            border: 1px solid rgba(255, 107, 0, 0.3);
+        }
+        
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .project-image {
+            height: 220px;
+            background: linear-gradient(135deg, var(--darker), var(--gray));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-image i {
+            font-size: 4rem;
+            z-index: 2;
+            text-shadow: 0 0 20px rgba(255, 107, 0, 0.5);
+            transition: all 0.5s ease;
+        }
+        
+        .project-card:hover .project-image i {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 10px var(--primary));
+        }
+        
+        .project-image::after {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, transparent 60%, var(--primary-light) 100%);
+            animation: rotate 15s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .project-info {
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .project-title {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .project-title i {
+            font-size: 1.2rem;
+        }
+        
+        .project-description {
+            color: #ccc;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tech-tag {
+            background: rgba(255, 107, 0, 0.1);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 107, 0, 0.3);
+        }
+        
+        .project-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            box-shadow: none;
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary-light);
+        }
+        
+        /* Páginas de Projeto Individual */
+        .project-page {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        .project-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .project-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .project-header p {
+            color: #ccc;
+            max-width: 800px;
+            line-height: 1.6;
+        }
+        
+        .project-screenshot {
+            width: 100%;
+            border-radius: 10px;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 107, 0, 0.2);
+        }
+        
+        .project-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+        
+        .project-features, .project-technologies {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 107, 0, 0.1);
+        }
+        
+        .project-features h2, .project-technologies h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .feature-list, .tech-list {
+            list-style: none;
+        }
+        
+        .feature-list li, .tech-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #ccc;
+        }
+        
+        .feature-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+        
+        .tech-list li::before {
+            content: '\f121';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+        
+        /* Página Sobre */
+        .about-page {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        .about-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .about-header h1 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .about-header p {
+            color: #ccc;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        .about-text {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 107, 0, 0.1);
+        }
+        
+        .about-text h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .about-text p {
+            color: #ccc;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .skills-section {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 107, 0, 0.1);
+        }
+        
+        .skills-section h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .skill-category {
+            margin-bottom: 2rem;
+        }
+        
+        .skill-category h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+        
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            background: rgba(255, 107, 0, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 107, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            background: rgba(255, 107, 0, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .skill-icon {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .skill-name {
+            font-size: 0.9rem;
+            color: #ccc;
+            text-align: center;
+        }
+        
+        .experience-section {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 107, 0, 0.1);
+            grid-column: 1 / -1;
+        }
+        
+        .experience-section h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+            padding-left: 2rem;
+        }
+        
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid var(--darker);
+        }
+        
+        .timeline-date {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-company {
+            color: #ccc;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-description {
+            color: #ccc;
+            line-height: 1.6;
+        }
+        
+        /* Rodapé */
+        footer {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            padding: 3rem;
+            margin-top: 5rem;
+            border-top: 1px solid rgba(255, 107, 0, 0.1);
+            position: relative;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-link {
+            color: #ccc;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            color: var(--primary);
+            transform: translateY(-5px) scale(1.1);
+        }
+        
+        .footer-text {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            }
+            
+            .project-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .project-header h1 {
+                font-size: 2rem;
+            }
+            
+            .about-header h1 {
+                font-size: 2rem;
+            }
+            
+            .project-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .skills-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="blur-circle circle-1"></div>
+    <div class="blur-circle circle-2"></div>
+    
+    <nav>
+        <a href="#" class="logo" data-page="home">PORTFÓLIO</a>
+        <div class="nav-links">
+            <a href="#" class="active" data-page="home">Início</a>
+            <a href="#" data-page="projects">Projetos</a>
+            <a href="#" data-page="about">Sobre</a>
+            <a href="#" data-page="contact">Contato</a>
+        </div>
+    </nav>
+    
+    <!-- Página Inicial -->
+    <div class="main-content active" id="home-page">
+        <section class="hero">
+            <h1>DESENVOLVEDOR Henrique</h1>
+            <p>Crio experiências digitais impressionantes que combinam design inovador com tecnologia de ponta. Cada projeto é uma oportunidade para superar limites e entregar soluções excepcionais.</p>
+            <a href="#" class="btn" data-page="projects"><i class="fas fa-rocket"></i> Ver Projetos</a>
+        </section>
+    </div>
+    
+    <!-- Página de Projetos -->
+    <div class="main-content" id="projects-page">
+        <section class="projects-page">
+            <h1 class="section-title">MEUS PROJETOS</h1>
+            <p class="section-subtitle">Uma coleção dos meus trabalhos mais recentes e desafiadores</p>
+            
+            <div class="projects-grid">
+                <!-- Projeto 1 -->
+                <div class="project-card" data-project="portfolio">
+                    <div class="project-image">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title"><i class="fas fa-star"></i> Portfólio Avançado</h3>
+                        <div class="tech-tags">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">GSAP</span>
+                        </div>
+                        <p class="project-description">Portfólio interativo com animações fluidas e design responsivo que se adapta a qualquer dispositivo.</p>
+                        <div class="project-actions">
+                            <a href="#" class="btn view-project" data-project="portfolio"><i class="fas fa-eye"></i> Ver Projeto</a>
+                            <a href="#" class="btn btn-outline"><i class="fas fa-code"></i> Código</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projeto 2 -->
+                <div class="project-card" data-project="ecommerce">
+                    <div class="project-image">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title"><i class="fas fa-bolt"></i> Cardapio Premium</h3>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <p class="project-description">Plataforma de Cardapio Digital com sistema de Pedidos.</p>
+                        <div class="project-actions">
+                            <a href="#" class="btn view-project" data-project="ecommerce"><i class="fas fa-eye"></i> Ver Projeto</a>
+                            <a href="#" class="btn btn-outline"><i class="fas fa-code"></i> Código</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projeto 3 -->
+                <div class="project-card" data-project="dashboard">
+                    <div class="project-image">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title"><i class="fas fa-database"></i> Projeto Genesis</h3>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">D3.js</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">REST API</span>
+                        </div>
+                        <p class="project-description">Sistema de rastreamento por GPS via IP, gerador de senhas criptografadas e painel de monitoramento de dispositivos em tempo real. Permite visualizar localização aproximada, gerar e armazenar senhas seguras, além de exportar relatórios detalhados.</p>
+                        <div class="project-actions">
+                            <a href="#" class="btn view-project" data-project="dashboard"><i class="fas fa-eye"></i> Ver Projeto</a>
+                            <a href="#" class="btn btn-outline"><i class="fas fa-code"></i> Código</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Página Sobre -->
+    <div class="main-content" id="about-page">
+        <section class="about-page">
+            <div class="about-header">
+                <h1>SOBRE MIM</h1>
+                <p>Desenvolvedor apaixonado por criar soluções inovadoras e eficientes que resolvem problemas reais.</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h2><i class="fas fa-user"></i> Quem sou eu</h2>
+                    <p>Olá! Meu nome é Henrique e sou um desenvolvedor full-stack com mais de 5 anos de experiência criando aplicações web e mobile. Minha paixão por tecnologia começou quando eu era adolescente e desde então venho me dedicando a aprender e aprimorar minhas habilidades.</p>
+                    <p>Acredito que a tecnologia deve ser usada para melhorar a vida das pessoas, e é isso que me motiva a criar soluções que sejam não apenas funcionais, mas também intuitivas e agradáveis de usar.</p>
+                    <p>Quando não estou codando, você pode me encontrar explorando novas tecnologias, contribuindo para projetos open-source ou ensinando programação para iniciantes.</p>
+                </div>
+                
+                <div class="skills-section">
+                    <h2><i class="fas fa-cogs"></i> Minhas Habilidades</h2>
+                    
+                    <div class="skill-category">
+                        <h3>Front-end</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item">
+                                <i class="fab fa-html5 skill-icon"></i>
+                                <span class="skill-name">HTML5</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fab fa-css3-alt skill-icon"></i>
+                                <span class="skill-name">CSS3</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fab fa-js skill-icon"></i>
+                                <span class="skill-name">JavaScript</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fab fa-react skill-icon"></i>
+                                <span class="skill-name">React</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fab fa-vuejs skill-icon"></i>
+                                <span class="skill-name">Vue.js</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fab fa-sass skill-icon"></i>
+                                <span class="skill-name">Sass</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Back-end</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item">
+                                <i class="fab fa-node-js skill-icon"></i>
+                                <span class="skill-name">Node.js</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-database skill-icon"></i>
+                                <span class="skill-name">MongoDB</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-database skill-icon"></i>
+                                <span class="skill-name">MySQL</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fab fa-python skill-icon"></i>
+                                <span class="skill-name">Python</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-server skill-icon"></i>
+                                <span class="skill-name">Express</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-fire skill-icon"></i>
+                                <span class="skill-name">Firebase</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="experience-section">
+                    <h2><i class="fas fa-briefcase"></i> Experiência Profissional</h2>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2021 - 2024</div>
+                            <h3 class="timeline-title">Desenvolvedor Full-stack</h3>
+                            <div class="timeline-company">Microsoft.</div>
+                            <p class="timeline-description">Desenvolvimento e manutenção de aplicações web e mobile usando React, Node.js e MongoDB. Liderança de equipe em projetos críticos e implementação de boas práticas de desenvolvimento.</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-date">2019 - 2021</div>
+                            <h3 class="timeline-title">Desenvolvedor Front-end</h3>
+                            <div class="timeline-company">lowrider studio</div>
+                            <p class="timeline-description">Criação de interfaces responsivas e interativas para clientes de diversos setores, trabalhando com Vue.js e Sass. Participação ativa no processo de design e experiência do usuário.</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-date">2018 - 2019</div>
+                            <h3 class="timeline-title">Moderador de Script</h3>
+                            <div class="timeline-company">HYPER Script</div>
+                            <p class="timeline-description">Aprendizado e aplicação de conceitos de programação em projetos reais, com foco em HTML e .lua. Suporte na manutenção de sistemas legados.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Páginas de Projetos Individuais -->
+    
+    <!-- Projeto Portfólio -->
+    <div class="main-content" id="portfolio-page">
+        <section class="project-page">
+            <div class="project-header">
+                <h1>Portfólio Avançado</h1>
+                <p>Um portfólio interativo que mostra meu trabalho de forma impactante, com animações fluidas e design totalmente responsivo.</p>
+            </div>
+            
+            <img src="https://via.placeholder.com/1200x600/333/ff6b00?text=Portfolio+Screenshot" alt="Portfólio" class="project-screenshot">
+            
+            <div class="project-details">
+                <div class="project-features">
+                    <h2><i class="fas fa-star"></i> Principais Recursos</h2>
+                    <ul class="feature-list">
+                        <li>Design responsivo para todos os dispositivos</li>
+                        <li>Animações suaves com GSAP</li>
+                        <li>Modo claro e escuro</li>
+                        <li>Sistema de filtragem de projetos</li>
+                        <li>Efeitos de hover interativos</li>
+                        <li>SEO otimizado</li>
+                    </ul>
+                </div>
+                
+                <div class="project-technologies">
+                    <h2><i class="fas fa-cogs"></i> Tecnologias Utilizadas</h2>
+                    <ul class="tech-list">
+                        <li>HTML5 semântico</li>
+                        <li>CSS3 com variáveis e Grid/Flexbox</li>
+                        <li>JavaScript moderno (ES6+)</li>
+                        <li>GSAP para animações</li>
+                        <li>Font Awesome para ícones</li>
+                        <li>Git para controle de versão</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="project-links">
+                <a href="#" class="btn"><i class="fas fa-external-link-alt"></i> Ver Online</a>
+                <a href="#" class="btn btn-outline"><i class="fab fa-github"></i> Código Fonte</a>
+                <a href="#" class="btn btn-outline" data-page="projects"><i class="fas fa-arrow-left"></i> Voltar</a>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Projeto E-commerce -->
+    <div class="main-content" id="ecommerce-page">
+        <section class="project-page">
+            <div class="project-header">
+                <h1>Cardápio Premium</h1>
+                <p>Plataforma completa de Cardápio Digital com sistema de Pedidos integrado, carrinho persistente e checkout seguro.</p>
+            </div>
+            
+            <img src="https://via.placeholder.com/1200x600/333/ff6b00?text=E-commerce+Screenshot" alt="Cardápios" class="project-screenshot">
+            
+            <div class="project-details">
+                <div class="project-features">
+                    <h2><i class="fas fa-star"></i> Principais Recursos</h2>
+                    <ul class="feature-list">
+                        <li>Catálogo de produtos com filtros</li>
+                        <li>Carrinho de compras persistente</li>
+                        <li>Checkout seguro com Stripe</li>
+                        <li>Integração com APIs de frete</li>
+                        <li>Sistema de Anúncios</li>
+                        <li>Sistema de Ofertas</li>
+                    </ul>
+                </div>
+                
+                <div class="project-technologies">
+                    <h2><i class="fas fa-cogs"></i> Tecnologias Utilizadas</h2>
+                    <ul class="tech-list">
+                        <li>React com Context API</li>
+                        <li>JavaScript</li>
+                        <li>Node.js para backend</li>
+                        <li>Express.js para API REST</li>
+                        <li>MongoDB para banco de dados</li>
+                </div>
+            </div>
+            
+            <div class="project-links">
+                <a href="#" class="btn"><i class="fas fa-external-link-alt"></i> Ver Online</a>
+                <a href="#" class="btn btn-outline"><i class="fab fa-github"></i> Código Fonte</a>
+                <a href="#" class="btn btn-outline" data-page="projects"><i class="fas fa-arrow-left"></i> Voltar</a>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Projeto Dashboard -->
+    <div class="main-content" id="dashboard-page">
+        <section class="project-page">
+            <div class="project-header">
+                <h1>Projeto Genesis</h1>
+                <p>Sistema de rastreamento por GPS via IP, gerador de senhas criptografadas e painel de monitoramento de dispositivos em tempo real. Permite visualizar localização aproximada, gerar e armazenar senhas seguras, além de exportar relatórios detalhados.</p>
+                </p>
+            </div>
+
+            <img src="https://via.placeholder.com/1200x600/333/ff6b00?text=Dashboard+Screenshot" alt="Genesis" class="project-screenshot">
+
+            <div class="project-details">
+                <div class="project-features">
+                    <h2><i class="fas fa-star"></i> Principais Recursos</h2>
+                    <ul class="feature-list">
+                        <li>Gráficos interativos com D3.js</li>
+                        <li>Atualização em tempo real</li>
+                        <li>Personalização de widgets</li>
+                        <li>Exportação de relatórios em PDF/CSV</li>
+                        <li>Filtros avançados de data</li>
+                        <li>Responsivo para mobile</li>
+                    </ul>
+                </div>
+                
+                <div class="project-technologies">
+                    <h2><i class="fas fa-cogs"></i> Tecnologias Utilizadas</h2>
+                    <ul class="tech-list">
+                        <li>Vue.js com Composition API</li>
+                        <li>D3.js para visualização</li>
+                        <li>Firebase Realtime Database</li>
+                        <li>REST API customizada</li>
+                        <li>Chart.js para gráficos secundários</li>
+                        <li>Vuetify para componentes UI</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="project-links">
+                <a href="#" class="btn"><i class="fas fa-external-link-alt"></i> Ver Online</a>
+                <a href="#" class="btn btn-outline"><i class="fab fa-github"></i> Código Fonte</a>
+                <a href="#" class="btn btn-outline" data-page="projects"><i class="fas fa-arrow-left"></i> Voltar</a>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Rodapé -->
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-codepen"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-dribbble"></i></a>
+            </div>
+            <p class="footer-text">© 2025 Portfólio Henrique. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Sistema de Navegação
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mostrar página inicial por padrão
+            showPage('home');
+            
+            // Navegação principal
+            document.querySelectorAll('[data-page]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.getAttribute('data-page');
+                    showPage(page);
+                    
+                    // Atualizar link ativo
+                    document.querySelectorAll('.nav-links a').forEach(navLink => {
+                        navLink.classList.remove('active');
+                    });
+                    
+                    if(page !== 'home') {
+                        document.querySelector(`.nav-links a[data-page="${page}"]`).classList.add('active');
+                    } else {
+                        document.querySelector('.nav-links a[data-page="home"]').classList.add('active');
+                    }
+                });
+            });
+            
+            // Visualizar projetos
+            document.querySelectorAll('.view-project').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const project = this.getAttribute('data-project');
+                    showPage(project);
+                });
+            });
+        });
+        
+        function showPage(page) {
+            // Esconder todas as páginas
+            document.querySelectorAll('.main-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Mostrar página solicitada
+            if(page === 'home' || page === 'projects' || page === 'about' || page === 'contact') {
+                document.getElementById(`${page}-page`).classList.add('active');
+            } else {
+                // Páginas de projeto individual
+                document.getElementById(`${page}-page`).classList.add('active');
+            }
+            
+            // Rolagem para o topo
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // Efeito de hover 3D nos cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const x = e.clientX - card.getBoundingClientRect().left;
+                const y = e.clientY - card.getBoundingClientRect().top;
+                
+                const centerX = card.offsetWidth / 2;
+                const centerY = card.offsetHeight / 2;
+                
+                const angleX = (y - centerY) / 20;
+                const angleY = (centerX - x) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) translateY(-10px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(-10px)';
+            });
+        });
+    </script>
+</body>
+</html>
